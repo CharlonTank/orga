@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col s4">
+			<h3>Welcome to Organize.</h3>
+			<%= link_to 'Create a tournament', new_tournament_path %>
+		</div>
+		<div>
+			<% if @tournaments_owned.present? %>
+				<h3>Tournaments you own</h3>
+				<ul><% @tournaments_owned.each do |p| %>
+					<li><%= link_to p.name, tournament_path(p) %></li>
+				<% end %></ul>
+			<% end %>
+			<% if @tournaments_hired.present? %>
+				<h3>Tournaments you are working on</h3>
+				<ul><% @tournaments_hired.each do |p| %>
+					<li><%= link_to p.name, tournament_path(p) %></li>
+				<% end %></ul>
+			<% end %>
+			<% if @tournaments_pending.present? %>
+				<h3>Tournament you can work on (pending on your approval)</h3>			
+				<ul><% @tournaments_pending.each do |p| %>
+					<li><%= link_to p.name, tournament_path(p) %></li>
+				<% end %></ul>
+			<% end %>
+		</div>
+		<% unless current_user %>
+			<div class="col s4">
+				<%= render 'devise/registrations/new' %>
+			</div>
+			<div class="col s4" id="session">
+				<%= render 'devise/sessions/new' %>
+			</div>
+		<% end %>
+	</div>
+</div>

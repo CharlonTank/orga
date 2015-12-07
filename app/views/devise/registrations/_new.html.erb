@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="card-panel blue lighten-4">
+    <h5>New on Organize</h5>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="input-field col s12">
+        <%= f.label :name, class: 'validate' %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+      <div class="input-field col s12">
+        <%= f.label :email, class: 'validate' %><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :password, class: 'validate' %>
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+      <div class="actions">
+        <%= f.button "Sign up", class: "waves-effect waves-light btn col s12", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing in..."} %>
+      </div>
+    <% end %>
+
+  <%= render "devise/shared/links" %>
+  </div>
+</div>

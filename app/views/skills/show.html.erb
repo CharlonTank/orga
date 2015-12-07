@@ -1,0 +1,5 @@
+<ul>
+	<% @skilled_users.each do |user| %>
+	<li><%= link_to user.name, profile_path(user_id: user.id, tournament_id: @tournament.id) %></li>
+	<% end %>
+</ul>

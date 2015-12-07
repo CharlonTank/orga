@@ -1,0 +1,10 @@
+<ul>
+	<li><%= @user.name %></li>
+	<li><%= @user.email %></li>
+</ul>
+
+
+<!--> Display only if user belong to this occupation <-->
+<% @user.titles.each do |t| %>
+	<%= link_to "Hire as #{t.name}", hire_path(title_id: t.id, user_id: @user.id, tournament_id: @tournament.id) %>
+<% end %>

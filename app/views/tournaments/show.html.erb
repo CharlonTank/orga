@@ -1,0 +1,24 @@
+<p>
+  <strong>Name:</strong>
+  <%= @tournament.name %>
+
+  <ul>
+	  <% @occupations.each do |occupation| %>
+	  	<% if occupation.tournament.user == current_user %>
+		  	<li><%= link_to occupation.title.name, skills_tournament_path(tournament_id: @tournament.id, title_id: occupation.title.id) %></li>
+		  <% else %>
+	  		<h3><%= occupation.title.name %></h3>
+	  	<% end %>
+	  	<% if occupation.user %>
+		  	<h4><%= link_to occupation.user.name, profile_path(user_id: occupation.user.id, tournament_id: @tournament.id) %></h4>
+		  <% end %>
+	  	<% if !occupation.taken && occupation.user == current_user %>
+		  	<%= link_to "Accept", accept_path(occupation_id: occupation.id) %>
+		  	<%= link_to "Decline", decline_path(occupation_id: occupation.id) %>
+	  	<% end %>
+	  <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
+<%= link_to 'Back', tournaments_path %>
